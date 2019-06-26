@@ -72,44 +72,7 @@ services:
     command: heartbeat -e -E output.elasticsearch.username=elastic -E output.elasticsearch.password=${ES_PASSWORD} -strict.perms=false
     networks: ['stack']
     restart: on-failure
-  #Nginx container
-  nginx:
-    container_name: nginx
-    hostname: nginx
-    build: ./config/nginx
-    networks: ['stack']
-    #Expose port 80 to allow users to hit content and generate data for filebeat and packetbeat
-    ports: ['80:80']
-    command: nginx -g 'daemon off;'
-    volumes:
-      #Logs are mounted to a relative path. These are also accessed by Filebeat and consumed by the Nginx module
-      - .\logs\nginx\:/var/log/nginx/
-  #Apache2 container
-  apache2:
-    container_name: apache2
-    hostname: apache2
-    build: ./config/apache2
-    networks: ['stack']
-    #Expose port 80 as port 800 to allow users to hit content and generate data for filebeat and packetbeat
-    ports: ['8000:80']
-    volumes:
-      #Logs are mounted to a relative path. These are also accessed by Filebeat and consumed by the Apache module
-      - .\logs\apache2\:/var/log/apache2/
-  #Mysql container
-  mysql:
-    container_name: mqsql
-    hostname: mysql
-    build: ./config/mysql
-    environment:
-      - "MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}"
-    networks: ['stack']
-    #Expose port 3306 to allow users to connect and perform operations. These will be picked up by Packetbeat, Filebeat and Metricbeat
-    ports: ['3306:3306']
-    volumes:
-      #Use named volume so mysql data is persisted across restart
-      - mysqldata:/var/lib/mysql/
-      #Logs are mounted to a relative path. These are also accessed by Filebeat and consumed by the Mysql module
-      - .\logs\mysql:/var/log/mysql/
+  
   #Filebeat container
   filebeat:
     container_name: filebeat
@@ -121,12 +84,6 @@ services:
       - .\config\beats\filebeat\filebeat.yml:/usr/share/filebeat/filebeat.yml
       #Mount the prospectors directory. Users can in turn add propspectors to this directory and they will be dynamically loaded
       - .\config\beats\filebeat\prospectors.d\:/usr/share/filebeat/prospectors.d/
-      #Mount the nginx logs into the filebeat container so we can access and index them using the filebeat nginx module
-      - .\logs\nginx\:/var/log/nginx/
-      #Mount the apache2 logs into the filebeat container so we can access and index them using the filebeat apache2 module
-      - .\logs\apache2\:/var/log/apache2/
-      #Mount the mysql logs into the filebeat container so we can access and and index them using the filebeat mysql module
-      - .\logs\mysql\:/var/log/mysql/
       #Mount the docker logs for indexing by the custom prospector ./config/filebeat/prospectors.d
       - /var/lib/docker/containers:/hostfs/var/lib/docker/containers
       #Named volume fsdata. This is used to persist the registry file between restarts, so to avoid data duplication
@@ -137,8 +94,6 @@ services:
     depends_on:
       #wait for the these services to come up. This ensures the logs are available and ES exists for indexing
       elasticsearch:  { condition: service_healthy }
-      nginx: { condition: service_started }
-      apache2: { condition: service_started }
   #Configure Stack container. This short lived container configures the stack once Kibana and Elasticsearch are available. More specifically, using a script it sets passwords, import dashboards, sets a default index pattern, loads templates and pipelines
   configure_stack:
     container_name: configure_stack
@@ -193,8 +148,6 @@ services:
     depends_on:
       #wait for the these services to come up. This ensures the logs are available and ES exists for indexing
       elasticsearch:  { condition: service_healthy }
-      nginx: { condition: service_started }
-      apache2: { condition: service_started }
 
 volumes:
   #Mysql data
