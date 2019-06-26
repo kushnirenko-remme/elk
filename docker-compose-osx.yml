@@ -123,8 +123,8 @@ services:
     command: metricbeat -e -system.hostfs=/hostfs -E output.elasticsearch.username=elastic -E output.elasticsearch.password=${ES_PASSWORD} -strict.perms=false
     networks: ['stack']
     restart: on-failure
-    environment:
-      - "MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}"
+  #  environment:
+  #    - "MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}"
     depends_on:
       #wait for the these services to come up. This ensures the logs are available and ES exists for indexing
       elasticsearch:  { condition: service_healthy }
