@@ -89,12 +89,6 @@ services:
       - ./config/beats/filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml
       #Mount the prospectors directory. Users can in turn add propspectors to this directory and they will be dynamically loaded
       - ./config/beats/filebeat/prospectors.d/:/usr/share/filebeat/prospectors.d/
-      ##Mount the nginx logs into the filebeat container so we can access and index them using the filebeat nginx module
-      #- ./logs/nginx/:/var/log/nginx/
-      ##Mount the apache2 logs into the filebeat container so we can access and index them using the filebeat apache2 module
-      #- ./logs/apache2/:/var/log/apache2/
-      ##Mount the mysql logs into the filebeat container so we can access and and index them using the filebeat mysql module
-      #- ./logs/mysql/:/var/log/mysql/
       #Mount the hosts system log directory. This represents the logs of the VM hosting docker. Consumed by the filebeat system module.
       - /var/log/:/var/log/host/:ro
       #Mount the docker logs for indexing by the custom prospector ./config/filebeat/prospectors.d
