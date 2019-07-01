@@ -62,22 +62,6 @@ services:
       test: ["CMD", "curl", "-s", "-f", "http://localhost:5601/login"]
       retries: 6
 
-  #Heartbeat container
-  heartbeat:
-    container_name: heartbeat
-    hostname: heartbeat
-    image: "docker.elastic.co/beats/heartbeat:${ELASTIC_VERSION}"
-    volumes:
-      #Mount the heartbeat configuration so users can make edits
-      - ./config/beats/heartbeat/heartbeat.yml:/usr/share/heartbeat/heartbeat.yml
-    depends_on:
-      elasticsearch:  { condition: service_healthy }
-    environment:
-      - "ES_PASSWORD=${ES_PASSWORD}"
-    command: heartbeat -e -E output.elasticsearch.username=elastic -E output.elasticsearch.password=${ES_PASSWORD} -strict.perms=false
-    networks: ['stack']
-    restart: on-failure
-
   #Filebeat container
   filebeat:
     container_name: filebeat
@@ -129,31 +113,11 @@ services:
     command: metricbeat -e -system.hostfs=/hostfs -E output.elasticsearch.username=elastic -E output.elasticsearch.password=${ES_PASSWORD} -strict.perms=false
     networks: ['stack']
     restart: on-failure
-    environment:
+    #environment:
     #  - "MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}"
     depends_on:
       #wait for the these services to come up. This ensures the logs are available and ES exists for indexing
       elasticsearch:  { condition: service_healthy }
-
-  #Packetbeat container
-  packetbeat:
-    container_name: packetbeat
-    hostname: packetbeat
-    image: "docker.elastic.co/beats/packetbeat:${ELASTIC_VERSION}"
-    volumes:
-      - ./config/beats/packetbeat/packetbeat.yml:/usr/share/packetbeat/packetbeat.yml
-    # Packetbeat needs some elevated privileges to capture network traffic.
-    # We'll grant them with POSIX capabilities.
-    cap_add: ['NET_RAW', 'NET_ADMIN']
-    # Use "host mode" networking to allow Packetbeat to capture traffic from
-    # the real network interface on the host, rather than being isolated to the
-    # container's virtual interface.
-    network_mode: host
-    command: packetbeat -e -E output.elasticsearch.hosts='["localhost:9200"]' -E output.elasticsearch.username=elastic -E output.elasticsearch.password=${ES_PASSWORD} -strict.perms=false
-    depends_on:
-      #Wait for ES to be up before we start collecting
-      elasticsearch:  { condition: service_healthy }
-
 
   #Configure Stack container. This short lived container configures the stack once Kibana and Elasticsearch are available. More specifically, using a script it sets passwords, import dashboards, sets a default index pattern, loads templates and pipelines
   configure_stack:
