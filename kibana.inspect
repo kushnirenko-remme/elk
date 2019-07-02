@@ -1,0 +1,292 @@
+[
+    {
+        "Id": "3247f696755ac811756a33e5d0db20cffa4d78e59151ee5a45662c40f7ce9858",
+        "Created": "2019-07-01T14:45:07.658884042Z",
+        "Path": "/usr/local/bin/kibana-docker",
+        "Args": [],
+        "State": {
+            "Status": "running",
+            "Running": true,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 1593,
+            "ExitCode": 0,
+            "Error": "",
+            "StartedAt": "2019-07-01T14:45:09.239175122Z",
+            "FinishedAt": "0001-01-01T00:00:00Z",
+            "Health": {
+                "Status": "healthy",
+                "FailingStreak": 0,
+                "Log": [
+                    {
+                        "Start": "2019-07-02T12:37:40.703493134Z",
+                        "End": "2019-07-02T12:37:41.017581925Z",
+                        "ExitCode": 0,
+                        "Output": ""
+                    },
+                    {
+                        "Start": "2019-07-02T12:38:11.030695181Z",
+                        "End": "2019-07-02T12:38:11.362548624Z",
+                        "ExitCode": 0,
+                        "Output": ""
+                    },
+                    {
+                        "Start": "2019-07-02T12:38:41.375888496Z",
+                        "End": "2019-07-02T12:38:41.702196706Z",
+                        "ExitCode": 0,
+                        "Output": ""
+                    },
+                    {
+                        "Start": "2019-07-02T12:39:11.716262849Z",
+                        "End": "2019-07-02T12:39:12.023231915Z",
+                        "ExitCode": 0,
+                        "Output": ""
+                    },
+                    {
+                        "Start": "2019-07-02T12:39:42.038293721Z",
+                        "End": "2019-07-02T12:39:42.381110716Z",
+                        "ExitCode": 0,
+                        "Output": ""
+                    }
+                ]
+            }
+        },
+        "Image": "sha256:3e581a516dcd421a2f91524acd7683f2b73c8b0d5ebbe7d0356aa943bb83764d",
+        "ResolvConfPath": "/var/lib/docker/containers/3247f696755ac811756a33e5d0db20cffa4d78e59151ee5a45662c40f7ce9858/resolv.conf",
+        "HostnamePath": "/var/lib/docker/containers/3247f696755ac811756a33e5d0db20cffa4d78e59151ee5a45662c40f7ce9858/hostname",
+        "HostsPath": "/var/lib/docker/containers/3247f696755ac811756a33e5d0db20cffa4d78e59151ee5a45662c40f7ce9858/hosts",
+        "LogPath": "/var/lib/docker/containers/3247f696755ac811756a33e5d0db20cffa4d78e59151ee5a45662c40f7ce9858/3247f696755ac811756a33e5d0db20cffa4d78e59151ee5a45662c40f7ce9858-json.log",
+        "Name": "/kibana",
+        "RestartCount": 0,
+        "Driver": "overlay2",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "docker-default",
+        "ExecIDs": null,
+        "HostConfig": {
+            "Binds": [
+                "/home/ubuntu/elk/config/kibana/kibana.yml:/usr/share/kibana/kibana.yml:rw"
+            ],
+            "ContainerIDFile": "",
+            "LogConfig": {
+                "Type": "json-file",
+                "Config": {}
+            },
+            "NetworkMode": "elk_stack",
+            "PortBindings": {
+                "5601/tcp": [
+                    {
+                        "HostIp": "",
+                        "HostPort": "5601"
+                    }
+                ]
+            },
+            "RestartPolicy": {
+                "Name": "",
+                "MaximumRetryCount": 0
+            },
+            "AutoRemove": false,
+            "VolumeDriver": "",
+            "VolumesFrom": [],
+            "CapAdd": null,
+            "CapDrop": null,
+            "Dns": null,
+            "DnsOptions": null,
+            "DnsSearch": null,
+            "ExtraHosts": null,
+            "GroupAdd": null,
+            "IpcMode": "shareable",
+            "Cgroup": "",
+            "Links": null,
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "Privileged": false,
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": false,
+            "SecurityOpt": null,
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 67108864,
+            "Runtime": "runc",
+            "ConsoleSize": [
+                0,
+                0
+            ],
+            "Isolation": "",
+            "CpuShares": 0,
+            "Memory": 0,
+            "NanoCpus": 0,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": null,
+            "BlkioDeviceReadBps": null,
+            "BlkioDeviceWriteBps": null,
+            "BlkioDeviceReadIOps": null,
+            "BlkioDeviceWriteIOps": null,
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpuRealtimePeriod": 0,
+            "CpuRealtimeRuntime": 0,
+            "CpusetCpus": "",
+            "CpusetMems": "",
+            "Devices": null,
+            "DeviceCgroupRules": null,
+            "DiskQuota": 0,
+            "KernelMemory": 0,
+            "MemoryReservation": 0,
+            "MemorySwap": 0,
+            "MemorySwappiness": null,
+            "OomKillDisable": false,
+            "PidsLimit": 0,
+            "Ulimits": null,
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "IOMaximumIOps": 0,
+            "IOMaximumBandwidth": 0,
+            "MaskedPaths": [
+                "/proc/asound",
+                "/proc/acpi",
+                "/proc/kcore",
+                "/proc/keys",
+                "/proc/latency_stats",
+                "/proc/timer_list",
+                "/proc/timer_stats",
+                "/proc/sched_debug",
+                "/proc/scsi",
+                "/sys/firmware"
+            ],
+            "ReadonlyPaths": [
+                "/proc/bus",
+                "/proc/fs",
+                "/proc/irq",
+                "/proc/sys",
+                "/proc/sysrq-trigger"
+            ]
+        },
+        "GraphDriver": {
+            "Data": {
+                "LowerDir": "/var/lib/docker/overlay2/b326f6b429e4bda9d6c4e394b198e2585afff5a0b509d5a0e7855daf64b1f108-init/diff:/var/lib/docker/overlay2/3b1faa7c8e49be747a6adf7f04f0cc7c1261a20b8cbf39fc420c8d631241c47b/diff:/var/lib/docker/overlay2/c202d6e50efbb51cecc5d7e8a8d205076cfc920b485330a658341a7a2078666f/diff:/var/lib/docker/overlay2/687d2093490f81956195a790e8c16d931e0a831c97547ab2555d64d687140b7b/diff:/var/lib/docker/overlay2/f8d9fe7e536cc47e89d38d7fdf6a3542b0f7649c7beb55ae8ae8d0b3ea43d08b/diff:/var/lib/docker/overlay2/779dbc21f2abf4b61b106bb98d49cffaf4b34045759024e29bbfa20357c6f688/diff:/var/lib/docker/overlay2/f084dd18840fe7de59d8226ad2632ce358c167ae040948381efe9802f65ea69b/diff:/var/lib/docker/overlay2/479e3ad5c97d3137bc014c722c3b1a9d5fc134d7944984514164851e46286974/diff:/var/lib/docker/overlay2/30b05e5dd052d6d38b1494e12084677f7e0a69064b2fbd08194e366d142f0884/diff",
+                "MergedDir": "/var/lib/docker/overlay2/b326f6b429e4bda9d6c4e394b198e2585afff5a0b509d5a0e7855daf64b1f108/merged",
+                "UpperDir": "/var/lib/docker/overlay2/b326f6b429e4bda9d6c4e394b198e2585afff5a0b509d5a0e7855daf64b1f108/diff",
+                "WorkDir": "/var/lib/docker/overlay2/b326f6b429e4bda9d6c4e394b198e2585afff5a0b509d5a0e7855daf64b1f108/work"
+            },
+            "Name": "overlay2"
+        },
+        "Mounts": [
+            {
+                "Type": "bind",
+                "Source": "/home/ubuntu/elk/config/kibana/kibana.yml",
+                "Destination": "/usr/share/kibana/kibana.yml",
+                "Mode": "rw",
+                "RW": true,
+                "Propagation": "rprivate"
+            }
+        ],
+        "Config": {
+            "Hostname": "kibana",
+            "Domainname": "",
+            "User": "kibana",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "ExposedPorts": {
+                "5601/tcp": {}
+            },
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "ELASTICSEARCH_PASSWORD=privet",
+                "PATH=/usr/share/kibana/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "ELASTIC_CONTAINER=true"
+            ],
+            "Cmd": [
+                "/usr/local/bin/kibana-docker"
+            ],
+            "Healthcheck": {
+                "Test": [
+                    "CMD",
+                    "curl",
+                    "-s",
+                    "-f",
+                    "http://localhost:5601/login"
+                ],
+                "Retries": 6
+            },
+            "ArgsEscaped": true,
+            "Image": "docker.elastic.co/kibana/kibana:7.2.0",
+            "Volumes": {
+                "/usr/share/kibana/kibana.yml": {}
+            },
+            "WorkingDir": "/usr/share/kibana",
+            "Entrypoint": null,
+            "OnBuild": null,
+            "Labels": {
+                "com.docker.compose.config-hash": "47011316c202e5d2f2a94c695db631419d4ee1deec22a76a0dc1d5aab5031519",
+                "com.docker.compose.container-number": "1",
+                "com.docker.compose.oneoff": "False",
+                "com.docker.compose.project": "elk",
+                "com.docker.compose.service": "kibana",
+                "com.docker.compose.version": "1.24.0",
+                "license": "Elastic License",
+                "org.label-schema.build-date": "20190305",
+                "org.label-schema.license": "GPLv2",
+                "org.label-schema.name": "kibana",
+                "org.label-schema.schema-version": "1.0",
+                "org.label-schema.url": "https://www.elastic.co/products/kibana",
+                "org.label-schema.vcs-url": "https://github.com/elastic/kibana",
+                "org.label-schema.vendor": "Elastic",
+                "org.label-schema.version": "7.2.0"
+            }
+        },
+        "NetworkSettings": {
+            "Bridge": "",
+            "SandboxID": "400ff365f4f49dbc91751e93c27429c0915156c30e79a678fede884eec02ddb6",
+            "HairpinMode": false,
+            "LinkLocalIPv6Address": "",
+            "LinkLocalIPv6PrefixLen": 0,
+            "Ports": {
+                "5601/tcp": [
+                    {
+                        "HostIp": "0.0.0.0",
+                        "HostPort": "5601"
+                    }
+                ]
+            },
+            "SandboxKey": "/var/run/docker/netns/400ff365f4f4",
+            "SecondaryIPAddresses": null,
+            "SecondaryIPv6Addresses": null,
+            "EndpointID": "",
+            "Gateway": "",
+            "GlobalIPv6Address": "",
+            "GlobalIPv6PrefixLen": 0,
+            "IPAddress": "",
+            "IPPrefixLen": 0,
+            "IPv6Gateway": "",
+            "MacAddress": "",
+            "Networks": {
+                "elk_stack": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": [
+                        "kibana",
+                        "3247f696755a"
+                    ],
+                    "NetworkID": "77ce1cb8d2c1f2368c8c8b39a42db5f79dfa36584da709971e276f1d4571474a",
+                    "EndpointID": "277b9ab6f38a300a6d0077a2debd1cfd8918bfca0c9c2d50e93651601d9ea257",
+                    "Gateway": "172.25.0.1",
+                    "IPAddress": "172.25.0.3",
+                    "IPPrefixLen": 16,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "MacAddress": "02:42:ac:19:00:03",
+                    "DriverOpts": null
+                }
+            }
+        }
+    }
+]
