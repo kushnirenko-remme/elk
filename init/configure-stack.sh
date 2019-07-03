@@ -26,16 +26,8 @@ until curl -s http://kibana:5601/login -o /dev/null; do
     sleep 1
 done
 
-# Import the standard Beats dashboards.
-/usr/share/metricbeat/scripts/import_dashboards \
-  -beat '' \
-  -file /usr/share/metricbeat/beats-dashboards-${ELASTIC_VERSION}.zip \
-  -es http://elasticsearch:9200 \
-  -user elastic \
-  -pass ${ES_PASSWORD}
-
 # Import kibana objects
-curl -X POST "elasticsearch:5601/api/saved_objects/_import" -H "kbn-xsrf: true" --form file=@export.ndjson
+curl -X POST "localhost:5601/api/saved_objects/_import" -H "kbn-xsrf: true" --form file=@export.ndjson
 
 # Set the default index pattern.
 curl -s -XPUT http://elastic:${ES_PASSWORD}@elasticsearch:9200/.kibana/config/${ELASTIC_VERSION} \
