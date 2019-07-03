@@ -10,11 +10,7 @@ This architecture utilises Beat modules for data sources, populating a wide rang
 1. Docker-Compose > 1.15.0
 1. Ensuring the following ports are free on the host, as they are mounted by the containers:
 
-    - `80` (Nginx)
-    - `8000` (Apache2)
     - `5601` (Kibana)
-    - `9200` (Elasticsearch)
-    - `3306` (Mysql)
     
 1. Atleast 4Gb of available RAM
 1. wget - This is not a native tool on windows but readily available e.g. through [chocolatey](https://chocolatey.org/packages/Wget)
@@ -38,13 +34,7 @@ Summarising the above, the following containers are deployed:
 
 * `Elasticsearch`
 * `Kibana`
-* `Filebeat` - Collecting logs from the apache2, nginx and mysql containers. Also responsible for indexing the host's system and docker logs.
-* `Packetbeat` - Monitoring communication between all containers with respect to http, flows, dns and mysql.
-* `Heartbeat` - Pinging all other containers over icmp. Additionally monitoring Elasticsearch, Kibana, Nginx and Apache over http. Monitors mysql over TCP.
 * `Metricbeat` - Monitors nginx, apache2 and mysql containers using status check interfaces. Additionally, used to monitor the host system with respect cpu, disk, memory and network. Monitors the hosts docker statistics with respect to disk, cpu, health checks, memory and network.
-* `Nginx` - Supporting container for Filebeat (access+error logs) and Metricbeat (server-status)
-* `Apache2` - Supporting container for Filebeat (access+error logs) and Metricbeat (server-status)
-* `Mysql` - Supporting container for Filebeat (slow+error logs), Metricbeat (status) and Packetbeat data.
 
 In addition to the above containers, a `configure_stack` container is deployed at startup.  This is responsible for:
 
@@ -56,33 +46,11 @@ This container uses the Metricbeat images as it contains the required dashboards
 
 ## Modules & Data
 
-The following Beats modules are utilised in this stack example to provide data and dashboards:
+The following Beats module is utilised in this stack example to provide data and dashboards:
 
-1. Packetbeat, capturing traffic on all interfaces:
-    - `dns` - port `53`
-    - `http` - ports `9200`, `80`, `8080`, `8000`, `5000`, `8002`, `5601`
-    - `icmp`
-    - `flows`
-    - `mysql` - port `3306`
-    
 1. Metricbeat
-    - `apache` module with `status` metricset
-    - `docker` module with `container`, `cpu`, `diskio`, `healthcheck`, `info`, `memory` and `network` metricsets 
-    - `mysql` module with `status` metricset
-    - `nginx` module with `stubstatus` metricset
     - `system` module with `core`,`cpu`,`load`,`diskio`,`filesystem`,`fsstat`,`memory`,`network`,`process`,`socket`
     
-1. Heartbeat
-    - `http` - monitoring Elasticsearch (9200), Kibana (5601), Nginx (80), Apache(80)
-    - `tcp` - monitoring Mysql (3306)
-    - `icmp` - monitoring all containers
-    
-1. Filebeat
-    - `system` module with `syslog` metricset
-    - `mysql` module with `access` and `slowlog` `metricsets`
-    - `nginx` module with `access` and `error` `metricsets` 
-    - `apache` module with `access` and `error` `metricsets`
-
 ## Step by Step Instructions - Deploying the Stack
 
 1. Download the `full_stack_example.tar.gz` (OSX/Linux) or `full_stack_example.zip` file.  This is provided as there is no easy way to download a sub folder of this repository.  This represents the folders within this directory compressed.
