@@ -62,30 +62,6 @@ services:
       test: ["CMD", "curl", "-s", "-f", "http://localhost:5601/login"]
       retries: 6
 
-  #Filebeat container
-  filebeat:
-    container_name: filebeat
-    hostname: filebeat
-    user: root
-    image: "docker.elastic.co/beats/filebeat:${ELASTIC_VERSION}"
-    volumes:
-      #Mount the filebeat configuration so users can make edit
-      - ./config/beats/filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml
-      #Mount the prospectors directory. Users can in turn add propspectors to this directory and they will be dynamically loaded
-      - ./config/beats/filebeat/prospectors.d/:/usr/share/filebeat/prospectors.d/
-      #Mount the hosts system log directory. This represents the logs of the VM hosting docker. Consumed by the filebeat system module.
-      - /var/log/:/var/log/host/:ro
-      #Mount the docker logs for indexing by the custom prospector ./config/filebeat/prospectors.d
-      - /var/lib/docker/containers:/hostfs/var/lib/docker/containers
-      #Named volume fsdata. This is used to persist the registry file between restarts, so to avoid data duplication
-      - fbdata:/usr/share/filebeat/data/
-    networks: ['stack']
-    command: filebeat -e -E output.elasticsearch.username=elastic -E output.elasticsearch.password=${ES_PASSWORD} -strict.perms=false
-    restart: on-failure
-    depends_on:
-      #wait for the these services to come up. This ensures the logs are available and ES exists for indexing
-      elasticsearch:  { condition: service_healthy }
-
   #Metricbeat container
   metricbeat:
     container_name: metricbeat
