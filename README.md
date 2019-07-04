@@ -46,7 +46,11 @@ The following Beats module is utilised in this stack example to provide data and
 ## Step by Step Instructions - Deploying the Stack
 
 1. Clone the repository
-git clone https://github.com/kushnirenko-remme/elk
+
+
+    ```shell
+    git clone https://github.com/kushnirenko-remme/elk
+    ```
 
 1. Navigate into the elk folder and issue the following command. 
 
