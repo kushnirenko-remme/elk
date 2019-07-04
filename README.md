@@ -15,7 +15,6 @@ This repository installs ELK stack (metricbeat, kibana, elasticsearch) on the lo
 
 The example file uses docker-compose v2 syntax.
 
-**We assume prior knowledge of docker**
 
 ## Versions
 
@@ -56,6 +55,7 @@ The following Beats module is utilised in this stack example to provide data and
 
     ```shell
     cd elk
+    sudo ./install_docker.sh
     sudo docker-compose -f docker-compose-linux.yml up -d
     ```
 
@@ -79,11 +79,14 @@ The following Beats module is utilised in this stack example to provide data and
     
     Whilst the container ids will be unique, other details should be similar. Note the `configure_stack` container will have exited on completion of the configuration of stack.  This occurs before the beat containers start.  Other containers should be "Up".
 
-1. On confirming the stack is started, define the HOST IP `HOST=<insert IP>`, navigate to kibana at http://$HOST:5601/app/kibana#/dashboard/79ffd6e0-faa0-11e6-947f-177f697178b8-ecs.  Assuming you haven't changed the default password, see [Customising the Stack](TODO), the default credentials of `elastic` and `changeme` should apply.
+1. On confirming the stack is started, navigate to kibana at http://$HOST:5601.
 
-1. Navigate to the dashboard view. Open any of the dashboards listed as having data below. The following shows the Metricbeat-Docker dashboard.
+2. Download json file with kibana objects to the local disk `wget https://raw.githubusercontent.com/kushnirenko-remme/elk/metrics/export.ndjson`
 
-![Metricbeat Docker Dashboard]()
+3. Go to Kibana / Management / Saved Objects and press "Import". Choose downloaded file export.ndjson and click "Import". All visualisations, index pattern and dashboard will be imported.
+
+4. Go to kibana / Dashboards / [Metricbeat System] Host overview ECS
+
 
 ## Dashboards with data
 
