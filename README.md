@@ -79,15 +79,14 @@ The following Beats module is utilised in this stack example to provide data and
     
     Whilst the container ids will be unique, other details should be similar. Note the `configure_stack` container will have exited on completion of the configuration of stack.  This occurs before the beat containers start.  Other containers should be "Up".
 
-1. On confirming the stack is started, navigate to kibana at http://localhost:5601/app/kibana#/dashboard/79ffd6e0-faa0-11e6-947f-177f697178b8-ecs.  Assuming you haven't changed the default password, see [Customising the Stack](TODO), the default credentials of `elastic` and `changeme` should apply.
+1. On confirming the stack is started, define the HOST IP `HOST=<insert IP>`, navigate to kibana at http://$HOST:5601/app/kibana#/dashboard/79ffd6e0-faa0-11e6-947f-177f697178b8-ecs.  Assuming you haven't changed the default password, see [Customising the Stack](TODO), the default credentials of `elastic` and `changeme` should apply.
 
 1. Navigate to the dashboard view. Open any of the dashboards listed as having data below. The following shows the Metricbeat-Docker dashboard.
 
-![Metricbeat Docker Dashboard](https://user-images.githubusercontent.com/12695796/29227415-a3413aec-7ecd-11e7-8824-cfc48982b124.png)
+![Metricbeat Docker Dashboard]()
 
 ## Dashboards with data
 
-The following dashboards are accessible and populated. Other dashboards, whilst loaded, will not have data due to the absence of an appropriate container e.g. Packetbeat Cassandra.
 
 * Metricbeat filesystem per Host
 * Metricbeat system overview
@@ -97,9 +96,6 @@ The following dashboards are accessible and populated. Other dashboards, whilst 
 * Metricbeat-network
 * Metricbeat-overview
 * Metricbeat-processes
-* Packetbeat Dashboard (limited)
-* Packetbeat Flows
-* Packetbeat HTTP
 
 ## Technical notes
 
